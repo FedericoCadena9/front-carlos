@@ -7,13 +7,13 @@ const Alumnos = ({ alumnos }) => {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 md:mx-20 md:mt-10">
       <div className="w-full flex flex-col items-center my-6 md:justify-center">
-        {/* <Image
+        <Image
           width="120px"
           height="120px"
           objectFit="cover"
           src="https://i.pravatar.cc/300"
           alt="Student Profile Image"
-        /> */}
+        />
         <div className="my-3 text-center">
           <h1 className="font-bold text-xl text-gray-700">{`${alumnos.nombres} ${alumnos.apellidoPaterno} ${alumnos.apellidoMaterno}`} </h1>
           <p className="font-medium text-gray-500 text-sm">
