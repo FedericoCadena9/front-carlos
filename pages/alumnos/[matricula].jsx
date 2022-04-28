@@ -2,8 +2,10 @@ import Image from "next/image";
 
 import { baseUrl, dataApi } from "../../utils/dataApi";
 
+import Tabs from "../../components/Tabs";
+
 const Alumnos = ({ alumnos }) => {
-    // console.log(alumnos );
+  // console.log(alumnos );
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 md:mx-20 md:mt-10">
       <div className="w-full flex flex-col items-center my-6 md:justify-center">
@@ -15,11 +17,15 @@ const Alumnos = ({ alumnos }) => {
           alt="Student Profile Image"
         />
         <div className="my-3 text-center">
-          <h1 className="font-bold text-xl text-gray-700">{`${alumnos.nombres} ${alumnos.apellidoPaterno} ${alumnos.apellidoMaterno}`} </h1>
+          <h1 className="font-bold text-xl text-gray-700">
+            {`${alumnos.nombres} ${alumnos.apellidoPaterno} ${alumnos.apellidoMaterno}`}{" "}
+          </h1>
           <p className="font-medium text-gray-500 text-sm">
             {`${alumnos.grado}° Grado Grupo "${alumnos.grupo}"`}
           </p>
-          <p className="font-medium text-gray-500 text-sm">{alumnos.telefono}</p>
+          <p className="font-medium text-gray-500 text-sm">
+            {alumnos.telefono}
+          </p>
 
           <div className="my-10">
             {" "}
@@ -30,9 +36,11 @@ const Alumnos = ({ alumnos }) => {
               {`${alumnos.tutor.data.attributes.nombres}
               ${alumnos.tutor.data.attributes.apellidoPaterno}
               ${alumnos.tutor.data.attributes.apellidoMaterno}`}
-              
             </h2>
-            <p className="font-medium text-gray-500 text-sm"> {alumnos.tutor.data.attributes.telefono}</p>
+            <p className="font-medium text-gray-500 text-sm">
+              {" "}
+              {alumnos.tutor.data.attributes.telefono}
+            </p>
             <p className="font-medium text-gray-500 text-sm">
               {" "}
               {alumnos.tutor.data.attributes.correo}
@@ -44,7 +52,74 @@ const Alumnos = ({ alumnos }) => {
           </div>
         </div>
       </div>
-          
+      <div>
+        <p className="font-semibold text-gray-800 my-6">Consulta de Asistencias</p>
+
+        {alumnos.asistencias.data.map((asistencia) => (
+          <div className="flex items-start py-3 border-b hover:bg-gray-100 cursor-pointer px-2">
+            {asistencia.attributes.estado == true ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-9 w-9 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-9 w-9 text-red-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            )}
+            <div className="w-full ml-2">
+              <div className="flex items-center justify-between ">
+                {asistencia.attributes.estado == true ? (
+                  <p className="text-sm font-semibold text-slate-700">
+                    Asistencia Confirmada
+                  </p>
+                ) : (
+                  <p className="text-sm font-semibold text-slate-700">
+                    Asistencia Denegada
+                  </p>
+                )}
+
+                <span className="text-xs text-slate-500">
+                  {asistencia.attributes.createdAt}
+                </span>
+              </div>
+              <p className="text-gray-500 text-sm mt-2 inline-block">
+                {`El alumno ${alumnos.nombres}`}&nbsp;
+              </p>
+              {asistencia.attributes.estado == true ? (
+                <p className="text-gray-500 text-sm inline-block">
+                  entró correctamente a la institución.
+                </p>
+              ) : (
+                <p className="text-gray-500 text-sm inline-block">
+                  no se presentó. Comuniquese inmediatamente con la institución.
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -66,7 +141,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const matricula = params.matricula;
-  const alumnos = await dataApi(`${baseUrl}/alumnos?filters[matricula ]=${matricula}&populate=*`);
+  const alumnos = await dataApi(
+    `${baseUrl}/alumnos?filters[matricula ]=${matricula}&populate=*`
+  );
 
   return {
     props: {
