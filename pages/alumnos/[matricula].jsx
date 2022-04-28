@@ -147,6 +147,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       alumnos: alumnos.data[0].attributes,
     },
+    revalidate: 10
   };
 };
 
