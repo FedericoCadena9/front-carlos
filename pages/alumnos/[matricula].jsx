@@ -44,7 +44,7 @@ const Alumnos = ({ alumnos }) => {
           </div>
         </div>
       </div>
-
+          
     </div>
   );
 };
@@ -66,7 +66,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const matricula = params.matricula;
-  const alumnos = await dataApi(`${baseUrl}/alumnos?filters[matricula]=${matricula}&populate=*`);
+  const alumnos = await dataApi(`${baseUrl}/alumnos?filters[matricula ]=${matricula}&populate=*`);
 
   return {
     props: {
