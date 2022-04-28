@@ -51,10 +51,15 @@ const Alumnos = ({ alumnos }) => {
         </div>
       </div>
       <div>
-        <p className="font-semibold text-gray-800 my-6">Consulta de Asistencias</p>
+        <p className="font-semibold text-gray-800 my-6">
+          Consulta de Asistencias
+        </p>
 
         {alumnos.asistencias.data.map((asistencia, id) => (
-          <div key={id} className="flex items-start py-3 border-b hover:bg-gray-100 cursor-pointer px-2">
+          <div
+            key={id}
+            className="flex items-start py-3 border-b hover:bg-gray-100 cursor-pointer px-2"
+          >
             {asistencia.attributes.estado == true ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,15 +93,26 @@ const Alumnos = ({ alumnos }) => {
             )}
             <div className="w-full ml-2">
               <div className="flex items-center justify-between ">
-                {asistencia.attributes.estado == true ? (
-                  <p className="text-sm font-semibold text-slate-700">
-                    Asistencia Confirmada
-                  </p>
-                ) : (
-                  <p className="text-sm font-semibold text-slate-700">
-                    Asistencia Denegada
-                  </p>
-                )}
+                <div className="flex space-x-1">
+                  {asistencia.attributes.tipo == 'Entrada' ? (
+                    <p className="text-sm font-semibold text-slate-700">
+                      Asistencia
+                    </p>
+                  ) : (
+                    <p className="text-sm font-semibold text-slate-700">
+                      Salida
+                    </p>
+                  )}
+                  {asistencia.attributes.estado == true ? (
+                    <p className="text-sm font-semibold text-slate-700">
+                      Confirmada
+                    </p>
+                  ) : (
+                    <p className="text-sm font-semibold text-slate-700">
+                      Denegada
+                    </p>
+                  )}
+                </div>
 
                 <span className="text-xs text-slate-500">
                   {asistencia.attributes.createdAt}
@@ -147,7 +163,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       alumnos: alumnos.data[0].attributes,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 };
 
