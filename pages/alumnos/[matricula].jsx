@@ -21,7 +21,7 @@ const Alumnos = ({ alumnos }) => {
           </p>
           <p className="font-medium text-gray-500 text-sm">{alumnos.telefono}</p>
 
-          {/* <div className="my-10">
+          <div className="my-10">
             {" "}
             <h1 className="font-medium text-base text-blue-500">
               Datos Tutor:
@@ -41,7 +41,7 @@ const Alumnos = ({ alumnos }) => {
               {" "}
               {alumnos.tutor.data.attributes.domicilio}
             </p>
-          </div> */}
+          </div>
         </div>
       </div>
 
