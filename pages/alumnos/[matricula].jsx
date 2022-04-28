@@ -73,7 +73,7 @@ const Alumnos = ({ alumnos }) => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-9 w-9 text-red-500"
+                className="h-9 w-9 text-red-500"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
