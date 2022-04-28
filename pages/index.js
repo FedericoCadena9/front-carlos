@@ -3,21 +3,8 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { baseUrl, dataApi } from "../utils/dataApi";
 
-export const getStaticProps = async () => {
-  const alumnos = await dataApi(
-    `${baseUrl}/alumnos?populate=*`
-  );
-
-  return {
-    props: {
-      alumnos: alumnos.data,
-    },
-  };
-};
-
 export default function Home({alumnos}) {
 
-  console.log(alumnos);
   return (
     <div className={styles.container}>
       <Head>

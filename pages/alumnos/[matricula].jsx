@@ -3,7 +3,7 @@ import Image from "next/image";
 import { baseUrl, dataApi } from "../../utils/dataApi";
 
 const Alumnos = ({ alumnos }) => {
-    console.log(alumnos );
+    // console.log(alumnos );
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 md:mx-20 md:mt-10">
       <div className="w-full flex flex-col items-center my-6 md:justify-center">
@@ -66,7 +66,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const matricula = params.matricula;
-  const alumnos = await dataApi(`${baseUrl}/alumnos?populate=*`);
+  const alumnos = await dataApi(`${baseUrl}/alumnos?filters[matricula]=${matricula}&populate=*`);
 
   return {
     props: {
