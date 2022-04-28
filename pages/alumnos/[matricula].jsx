@@ -53,8 +53,8 @@ const Alumnos = ({ alumnos }) => {
       <div>
         <p className="font-semibold text-gray-800 my-6">Consulta de Asistencias</p>
 
-        {alumnos.asistencias.data.map((asistencia) => (
-          <div className="flex items-start py-3 border-b hover:bg-gray-100 cursor-pointer px-2">
+        {alumnos.asistencias.data.map((asistencia, id) => (
+          <div key={id} className="flex items-start py-3 border-b hover:bg-gray-100 cursor-pointer px-2">
             {asistencia.attributes.estado == true ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
