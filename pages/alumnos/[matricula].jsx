@@ -28,24 +28,24 @@ const Alumnos = ({ alumnos }) => {
           <div className="my-10">
             {" "}
             <h1 className="font-medium text-base text-blue-500">
-              Datos Tutor:
+              Datos tutor:
             </h1>
             <h2 className="font-semibold text-lg text-gray-700">
-              {`${alumnos.tutor.data.attributes.nombres}
-              ${alumnos.tutor.data.attributes.apellidoPaterno}
-              ${alumnos.tutor.data.attributes.apellidoMaterno}`}
+              {`${alumnos.tutores.data.attributes.nombres}
+              ${alumnos.tutores.data.attributes.apellidoPaterno}
+              ${alumnos.tutores.data.attributes.apellidoMaterno}`}
             </h2>
             <p className="font-medium text-gray-500 text-sm">
               {" "}
-              {alumnos.tutor.data.attributes.telefono}
+              {alumnos.tutores.data.attributes.telefono}
             </p>
             <p className="font-medium text-gray-500 text-sm">
               {" "}
-              {alumnos.tutor.data.attributes.correo}
+              {alumnos.tutores.data.attributes.correo}
             </p>
             <p className="font-medium text-gray-500 text-sm">
               {" "}
-              {alumnos.tutor.data.attributes.domicilio}
+              {alumnos.tutores.data.attributes.domicilio}
             </p>
           </div>
         </div>
